@@ -1,0 +1,27 @@
+name: build
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 8
+      - name: Generate placeholder assets
+        run: |
+          pip install pillow
+          python3 scripts/gen_assets.py
+      - name: Install Gradle 5.6.4
+        run: |
+          wget -q https://services.gradle.org/distributions/gradle-5.6.4-bin.zip
+          unzip -q gradle-5.6.4-bin.zip
+      - name: Build
+        run: ./gradle-5.6.4/bin/gradle build
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ironman-jar
+          path: build/libs/*.jar

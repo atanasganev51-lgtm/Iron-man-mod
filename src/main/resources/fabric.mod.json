@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "id": "ironman",
+  "version": "${version}",
+  "name": "Iron Man",
+  "description": "Every Iron Man Mark suit, lightweight.",
+  "authors": [],
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.example.ironman.IronManMod"],
+    "client": ["com.example.ironman.IronManClient"]
+  },
+  "depends": {
+    "fabricloader": ">=0.4.0",
+    "fabric": "*"
+  }
+}
